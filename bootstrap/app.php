@@ -12,7 +12,18 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'permission' => \App\Http\Middleware\CheckPermission::class,
+        ]);
+        $middleware->redirectGuestsTo(function ($request) {
+            if (!$request->expectsJson()) {
+                if (in_array('auth:admin', $request->route()->middleware())) {
+                    if (!auth('admin')->check()) {
+                        return route('admin.templates.index');
+                    }
+                }
+            }
+        });
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
