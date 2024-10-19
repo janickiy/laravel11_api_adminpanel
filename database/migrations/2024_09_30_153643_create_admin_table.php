@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('login')->unique();
             $table->string('password');
             $table->string('name')->nullable();
+            $table->string('role');
             $table->rememberToken();
             $table->timestamps();
         });

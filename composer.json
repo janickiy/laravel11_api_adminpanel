@@ -9,10 +9,10 @@
         "darkaonline/l5-swagger": "^8.6",
         "doctrine/dbal": "^4.1",
         "guzzlehttp/guzzle": "^7.9",
+        "janickiy/html": "^1.0",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "spatie/laravel-html": "^3.11",
         "tymon/jwt-auth": "^2.1"
     },
     "require-dev": {

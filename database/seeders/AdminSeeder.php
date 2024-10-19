@@ -12,6 +12,7 @@ class AdminSeeder extends Seeder
         Admin::create([
             'name' => 'Админ',
             'login' => 'admin',
+            'role' => 'admin',
             'password' => app('hash')->make('1234567'),
         ]);
     }

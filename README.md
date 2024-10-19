@@ -23,6 +23,6 @@ docker exec -it myapp bash
     cp .env.example .env и заполнить необходимыми данными
     composer install
     php artisan migrate
+    php artisan db:seed
     php artisan key:generate
     php artisan jwt:secret
-

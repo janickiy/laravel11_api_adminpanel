@@ -122,19 +122,19 @@
                         </a>
                     </li>
 
-                    @if(PermissionsHelper::has_permission(Auth::user()->role,'admin|moderator'))
+                    @if(PermissionsHelper::has_permission('admin|moderator'))
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.category.index') }}" class="nav-link{{ Request::is('category*') ? ' active' : '' }}"
-                               title="категория">
+                            <a href="{{ route('admin.notes.index') }}" class="nav-link{{ Request::is('notes*') ? ' active' : '' }}"
+                               title="заметки">
                                 <i class="nav-icon fas fa-list"></i>
-                                <p>категория</p>
+                                <p>заметки</p>
                             </a>
                         </li>
 
                     @endif
 
-                    @if(PermissionsHelper::has_permission(Auth::user()->role,'admin'))
+                    @if(PermissionsHelper::has_permission('admin'))
 
                         <li class="nav-item">
                             <a href="{{ route('admin.users.index') }}" class="nav-link{{ Request::is('users*') ? ' active' : '' }}"
@@ -145,7 +145,6 @@
                         </li>
 
                     @endif
-
 
                 </ul>
             </nav>
@@ -165,13 +164,13 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ trans('frontend.str.admin_panel') }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Админ панель</a></li>
                             <li class="breadcrumb-item active">{{ $title }}</li>
                         </ol>
                     </div>
                 </div>
 
-                @include('admin.notifications')
+                @include('notifications')
 
             </div><!-- /.container-fluid -->
         </section>
@@ -185,7 +184,7 @@
         <div class="float-right d-none d-sm-block">
             <b></b>
         </div>
-        <strong>&copy; 2006-{{ date('Y') }} <a href="https://janicky.com">PHP Newsletter</a>, {{ trans('frontend.str.author') }}</strong>
+        <strong>&copy; {{ date('Y') }}</strong>
     </footer>
 
     <!-- Control Sidebar -->
