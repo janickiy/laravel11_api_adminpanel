@@ -23,13 +23,10 @@
 
     {!! Html::style('/plugins/flag-icon-css/css/flag-icon.min.css') !!}
 
-    <!-- Custom style -->
-    {!! Html::style('/dist/css/admin.css') !!}
-
     @yield('css')
 
     <script type="text/javascript">
-        let SITE_URL = "{{ URL::to('/') }}";
+        let SITE_URL = "{{ url('/') }}";
     </script>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -89,7 +86,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="{{ route('admin.templates.index') }}" class="brand-link">
+        <a href="{{ route('admin.dashboard.index') }}" class="brand-link">
             <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -100,7 +97,7 @@
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="{{ route('admin.users.edit', ['id' => Auth::user()->id ]) }}"
+                    <a href="{{ route('admin.admins.edit', ['id' => Auth::user()->id ]) }}"
                        class="d-block">{{ Auth::user()->login }} @if(!empty(Auth::user()->name))
                             ({{ Auth::user()->name }})
                         @endif</a>
@@ -115,10 +112,10 @@
                          with font-awesome or any other icon font library -->
 
                     <li class="nav-item">
-                        <a href="{{ route('admin.templates.index') }}" class="nav-link{{ Request::is('template*') ? ' active' : '' }}"
-                           title="шаблон">
+                        <a href="{{ route('admin.dashboard.index') }}" class="nav-link{{ Request::is('dashboard*') ? ' active' : '' }}"
+                           title="dashboard">
                             <i class="nav-icon fas fa-envelope"></i>
-                            <p>шаблон</p>
+                            <p>dashboard</p>
                         </a>
                     </li>
 
@@ -137,7 +134,7 @@
                     @if(PermissionsHelper::has_permission('admin'))
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.users.index') }}" class="nav-link{{ Request::is('users*') ? ' active' : '' }}"
+                            <a href="{{ route('admin.admins.index') }}" class="nav-link{{ Request::is('admins*') ? ' active' : '' }}"
                                title="пользователи">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>пользователи</p>

@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function index(): View
     {
-        return view('admin.users.index')->with('title', 'Пользователи');
+        return view('admin.index')->with('title', 'Пользователи');
     }
 
     /**
@@ -32,7 +32,7 @@ class AdminController extends Controller
             'editor' => 'Редактор',
         ];
 
-        return view('admin.users.create_edit', compact('options'))->with('title', 'Добавить пользователя');
+        return view('admin.create_edit', compact('options'))->with('title', 'Добавить пользователя');
     }
 
     /**
@@ -43,7 +43,7 @@ class AdminController extends Controller
     {
         Admin::create(array_merge($request->all(), ['password' => Hash::make($request->password)]));
 
-        return redirect()->route('admin.users.index')->with('success', 'Информация успешно добавлена!');
+        return redirect()->route('admin.index')->with('success', 'Информация успешно добавлена!');
     }
 
     /**
@@ -52,9 +52,9 @@ class AdminController extends Controller
      */
     public function edit(int $id): View
     {
-        $user = User::find($id);
+        $row = Admin::find($id);
 
-        if (!$user) abort(404);
+        if (!$row) abort(404);
 
         $options = [
             'admin' => 'Админ',
@@ -62,7 +62,7 @@ class AdminController extends Controller
             'editor' => 'Редактор',
         ];
 
-        return view('admin.users.create_edit', compact('user', 'options'))->with('title', 'Редактировать пользователя');
+        return view('admin.create_edit', compact('row', 'options'))->with('title', 'Редактировать пользователя');
     }
 
     /**
@@ -71,22 +71,22 @@ class AdminController extends Controller
      */
     public function update(EditRequest $request): RedirectResponse
     {
-        $user = Admin::find($request->id);
+        $admin = Admin::find($request->id);
 
-        if (!$user) abort(404);
+        if (!$admin) abort(404);
 
-        $user->login = $request->input('login');
-        $user->name = $request->input('name');
+        $admin->login = $request->input('login');
+        $admin->name = $request->input('name');
 
-        if (!empty($request->role)) $user->role = $request->input('role');
+        if (!empty($request->role)) $admin->role = $request->input('role');
 
         if (!empty($request->password)) {
-            $user->password = Hash::make($request->password);
+            $admin->password = Hash::make($request->password);
         }
 
-        $user->save();
+        $admin->save();
 
-        return redirect()->route('admin.users.index')->with('success', 'Данные успешно обновлены!');
+        return redirect()->route('admin.index')->with('success', 'Данные успешно обновлены!');
     }
 
     /**

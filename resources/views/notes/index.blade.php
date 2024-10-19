@@ -26,18 +26,12 @@
                         <div class="card">
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <div class="pb-3">
-                                    <a href="{{ route('admin.admins.create') }}" class="btn btn-info btn-sm pull-left">
-                                        <span class="fa fa-plus"> &nbsp;</span> добавить
-                                    </a>
-                                </div>
 
                                 <table id="itemList" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>логин</th>
-                                        <th>имя</th>
-                                        <th>роль</th>
+                                        <th>Название</th>
+                                        <th>Заметка</th>
                                         <th style="width: 10%">действия</th>
                                     </tr>
                                     </thead>
@@ -103,12 +97,11 @@
                         "autoWidth": true,
                         'serverSide': true,
                         'ajax': {
-                            url: '{{ route('admin.datatable.admin') }}'
+                            url: '{{ route('admin.datatable.notes') }}'
                         },
                         'columns': [
-                            {data: 'login', name: 'login'},
-                            {data: 'name', name: 'name'},
-                            {data: 'role', name: 'role'},
+                            {data: 'title', name: 'title'},
+                            {data: 'content', name: 'content'},
                             {data: 'action', name: 'action', orderable: false, searchable: false}
                         ]
                     });
@@ -131,7 +124,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: '{{ route('admin.admins.destroy') }}',
+                                    url: '{{ route('admin.notes.destroy') }}',
                                     type: "POST",
                                     dataType: "html",
                                     data: {id: rowid},

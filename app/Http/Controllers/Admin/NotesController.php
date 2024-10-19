@@ -14,7 +14,7 @@ class NotesController extends Controller
      */
     public function index(): View
     {
-        return view('admin.notes.index')->with('title', 'Заметки');
+        return view('notes.index')->with('title', 'Заметки');
     }
 
     /**
@@ -27,7 +27,7 @@ class NotesController extends Controller
 
         if (!$row) abort(404);
 
-        return view('admin.notes.create_edit')->with('title', 'Редактирование');
+        return view('notes.create_edit')->with('title', 'Редактирование');
     }
 
     /**
@@ -44,7 +44,7 @@ class NotesController extends Controller
         $row->content = $request->input('content');
         $row->save();
 
-        return redirect()->route('admin.notes.index')->with('success', 'Данные обновлены успешно');
+        return redirect()->route('notes.index')->with('success', 'Данные обновлены успешно');
     }
 
     /**
