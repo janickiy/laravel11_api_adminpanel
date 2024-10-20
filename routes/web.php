@@ -16,18 +16,18 @@ Route::group(['prefix' => 'admins'], function () {
     Route::get('', [AdminController::class, 'index'])->name('admin.admins.index');
     Route::get('create', [AdminController::class, 'create'])->name('admin.admins.create');
     Route::post('store', [AdminController::class, 'store'])->name('admin.admins.store');
-    Route::get('edit/{id}', [AdminController::class, 'edit'])->name('admin.admins.edit');
+    Route::get('edit/{id}', [AdminController::class, 'edit'])->name('admin.admins.edit')->where('id', '[0-9]+');
     Route::put('update', [AdminController::class, 'update'])->name('admin.admins.update');
-    Route::delete('destroy', [AdminController::class, 'destroy'])->name('admin.admins.destroy')->where('id', '[0-9]+');
+    Route::post('destroy', [AdminController::class, 'destroy'])->name('admin.admins.destroy')->where('id', '[0-9]+');
 });
 
 Route::group(['prefix' => 'notes'], function () {
     Route::get('', [NotesController::class, 'index'])->name('admin.notes.index');
     Route::get('create', [NotesController::class, 'create'])->name('admin.notes.create');
     Route::post('store', [NotesController::class, 'store'])->name('admin.notes.store');
-    Route::get('edit/{id}', [NotesController::class, 'edit'])->name('admin.notes.edit');
+    Route::get('edit/{id}', [NotesController::class, 'edit'])->name('admin.notes.edit')->where('id', '[0-9]+');
     Route::put('update', [NotesController::class, 'update'])->name('admin.notes.update');
-    Route::delete('destroy', [NotesController::class, 'destroy'])->name('admin.notes.destroy')->where('id', '[0-9]+');
+    Route::post('destroy', [NotesController::class, 'destroy'])->name('admin.notes.destroy');
 });
 
 Route::group(['prefix' => 'datatable'], function () {
