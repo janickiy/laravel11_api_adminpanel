@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Notes\StoreRequest;
-use App\Http\Requests\Notes\UpdateRequest;
 use App\Models\Notes;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -26,7 +25,7 @@ class NoteController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/notes",
+     *     path="/api/v1/notes",
      *     summary="Get all notes",
      *     @OA\Response(
      *         response=200,
@@ -51,7 +50,7 @@ class NoteController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/notes/{id}",
+     *     path="/api/v1/notes/{id}",
      *     summary="Get a specific note",
      *     @OA\Parameter(
      *         name="id",
@@ -94,7 +93,7 @@ class NoteController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/notes",
+     *     path="/api/v1/notes",
      *     summary="Create a new note",
      *     @OA\RequestBody(
      *         required=true,
@@ -134,7 +133,7 @@ class NoteController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/notes/{id}",
+     *     path="/api/v1/notes/{id}",
      *     summary="Update an existing note",
      *     @OA\Parameter(
      *         name="id",
@@ -195,7 +194,7 @@ class NoteController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/notes/{id}",
+     *     path="/api/v1/notes/{id}",
      *     summary="Delete a note",
      *     @OA\Parameter(
      *         name="id",
